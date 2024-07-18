@@ -1,11 +1,28 @@
-const title1 = document.getElementById("title")
-console.log(title1)
+const onClickAdd = () => {
+    const textEl = document.getElementById("add-text");
 
-const title2 = document.querySelector("#title")
-console.log(title2)
+    const text = textEl.value
+    textEl.value = "asdf";
 
-const containers = document.getElementsByClassName("container")
-console.log(containers)
+    const li = document.createElement("li");
+    const div = document.createElement("div")
 
-const container = document.querySelector(".container")
-console.log(container)
+    const p = document.createElement("p");
+    p.textContent = text;
+
+    const button = document.createElement("button");
+    button.textContent = "削除";
+    button.addEventListener("click", () => {
+        const deleteTarget = button.closest("li");
+        document.getElementById("memo-list").removeChild(deleteTarget);
+    })
+
+    div.appendChild(p)
+    div.appendChild(button)
+
+    li.appendChild(div)
+
+    document.getElementById("memo-list").appendChild(li);
+}
+
+document.getElementById("add-button").addEventListener("click", () => onClickAdd());
