@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { ColoredMessage } from "./components/ColoredMessage";
+import { StyledJsx } from "./components/StyledJsx";
+import { CssModules } from "./components/CssModules";
+import { StyledComponents } from "./components/StyledComponents";
 export const App = () => {
   const [num, setNum] = useState(0);
 
@@ -16,6 +19,9 @@ export const App = () => {
       <ColoredMessage color="pink">I'm good</ColoredMessage>
       <button onClick={onClickButton}> Click</button>
       <p>{num}</p>
+      <CssModules />
+      <StyledJsx />
+      <StyledComponents />
     </>
   );
 };
