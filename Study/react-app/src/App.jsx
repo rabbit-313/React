@@ -1,27 +1,25 @@
-import { useState } from "react";
-import { ColoredMessage } from "./components/ColoredMessage";
-import { StyledJsx } from "./components/StyledJsx";
-import { CssModules } from "./components/CssModules";
-import { StyledComponents } from "./components/StyledComponents";
-export const App = () => {
-  const [num, setNum] = useState(0);
+import { useState, memo, useCallback } from "react";
+import { Child1 } from "./components/Child1";
+import { Child4 } from "./components/Child4";
+
+export const App = memo(() => {
+  console.log("App rendering");
+  const [count, setCount] = useState(0);
 
   const onClickButton = () => {
-    alert();
-    setNum(num + 1);
+    setCount(count + 1);
   };
+
+  const onClickReset = useCallback(() => {
+    setCount(0);
+  }, []);
 
   return (
     <>
-      <h1 style={{ color: "red" }}> Hello World</h1>
-      <ColoredMessage />
-      <ColoredMessage color="blue">you good?</ColoredMessage>
-      <ColoredMessage color="pink">I'm good</ColoredMessage>
-      <button onClick={onClickButton}> Click</button>
-      <p>{num}</p>
-      <CssModules />
-      <StyledJsx />
-      <StyledComponents />
+      <button onClick={onClickButton}>Button</button>
+      <p>{count}</p>
+      <Child1 noClickReset={onClickReset} />
+      <Child4 />
     </>
   );
-};
+});
